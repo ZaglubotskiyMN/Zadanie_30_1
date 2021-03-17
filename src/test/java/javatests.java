@@ -4,14 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
-
-import javax.swing.*;
 
 public class javatests {
     private WebDriver webDriver;
@@ -36,44 +31,35 @@ public class javatests {
         WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
         Assert.assertEquals("Great! Return to menu",returnFirstClicMe.getText());
         returnFirstClicMe.click();
-
     }
     @Test
-    public void SecondTask(){
+    public void SecondTask() {
         WebElement secondTask = webDriver.findElement(By.id("checkbox"));
         secondTask.click();
         WebElement CheckBoxOne = webDriver.findElement(By.xpath("//*[@id='one']"));
         WebElement CheckboxTwo = webDriver.findElement(By.xpath("//*[@id='two']"));
         WebElement CheckboxThree = webDriver.findElement(By.xpath("//*[@id='three']"));
-       // WebElement Radio
+        WebElement RadioButtonOne = webDriver.findElement(By.id("radio_one"));
+        WebElement ButtonGetResult = webDriver.findElement(By.id("radio_go"));
         CheckBoxOne.click();
         WebElement buttonCheckBox = webDriver.findElement(By.id("go"));
         buttonCheckBox.click();
         WebElement resultCheckBox = webDriver.findElement(By.id("result"));
-        Assert.assertEquals("one",resultCheckBox.getText().trim());
+        Assert.assertEquals("one", resultCheckBox.getText().trim());
         CheckboxTwo.click();
         buttonCheckBox.click();
-        Assert.assertEquals("one two",resultCheckBox.getText().trim());
+        Assert.assertEquals("one two", resultCheckBox.getText().trim());
         CheckboxThree.click();
         buttonCheckBox.click();
-        Assert.assertEquals("one two three",resultCheckBox.getText().trim());
-
-
-
-
-
-
-
-
+        Assert.assertEquals("one two three", resultCheckBox.getText().trim());
+        RadioButtonOne.click();
+        ButtonGetResult.click();
+        WebElement RadioResult = webDriver.findElement(By.id("radio_result"));
+        Assert.assertEquals("one",RadioResult.getText());
+        WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
+        Assert.assertEquals("Great! Return to menu",returnFirstClicMe.getText());
+        returnFirstClicMe.click();
     }
-
-
-
-
-
-
-
-
     @After
     public void teardown () throws InterruptedException {
         Thread.sleep(5000);
