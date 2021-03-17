@@ -80,7 +80,8 @@ public class javatests {
         WebElement buttonSelectResult = webDriver.findElement(By.id("go"));
         buttonSelectResult.click();
         //WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
-        WebElement result = webDriver.findElement(By.name("result"));
+       // WebElement result = webDriver.findElement(By.name("result"));
+        WebElement result = webDriver.findElement(By.xpath();
         if (languagesSelect.isMultiple()) {
             Assert.assertEquals("Java, Python, C++", result.getText());
         } else
@@ -95,12 +96,16 @@ public class javatests {
         inputdata("Last Name:","Ivanov");
         inputdata("Email:","123@gmail.com");
         inputdata("Address:","Samara");
-        inputdata("Avatar:", "javaphoto.jpg");
+        inputdata("Avatar:", "C:\\Users\\Заглубоцкие\\IdeaProjects\\Zadanie_30_1\\javaphoto.jpg");
         WebElement inputtext = webDriver.findElement(By.xpath(".//label[text()='Tell me something about yourself']//following::textarea"));
         inputtext.sendKeys("very good");
+        WebElement submit = webDriver.findElement(By.xpath("//*[contains(@type,'submit')]"));
+        submit.submit();
+        WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
+        returnFirstClicMe.click();
 
 
-        //inputdatasex("Sex:","Male");
+        //inputdatasex("Sex:","Male");---- уточнить
 
 
     }
