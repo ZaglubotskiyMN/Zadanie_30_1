@@ -7,31 +7,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class javatests {
     private WebDriver webDriver;
 
     @Before
-    public void start(){
+    public void start() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.get("https://savkk.github.io/selenium-practice/");
     }
 
     @Test
-    public void firstTask(){
-        WebElement firstTask =webDriver.findElement(By.id("button"));
+    public void firstTask() {
+        WebElement firstTask = webDriver.findElement(By.id("button"));
         firstTask.click();
-        WebElement firstClickMe= webDriver.findElement(By.id("first"));
+        WebElement firstClickMe = webDriver.findElement(By.id("first"));
         firstClickMe.click();
         WebElement resultFirstClicMe = webDriver.findElement(By.xpath(".//label[text()='Excellent!']"));
-        Assert.assertEquals("Excellent!",resultFirstClicMe.getText());
+        Assert.assertEquals("Excellent!", resultFirstClicMe.getText());
         WebElement buttonClicMeTo = webDriver.findElement(By.xpath("//input[@type='button']"));
         buttonClicMeTo.click();
         WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
-        Assert.assertEquals("Great! Return to menu",returnFirstClicMe.getText());
+        Assert.assertEquals("Great! Return to menu", returnFirstClicMe.getText());
         returnFirstClicMe.click();
     }
+
     @Test
     public void SecondTask() {
         WebElement secondTask = webDriver.findElement(By.id("checkbox"));
@@ -55,15 +57,72 @@ public class javatests {
         RadioButtonOne.click();
         ButtonGetResult.click();
         WebElement RadioResult = webDriver.findElement(By.id("radio_result"));
-        Assert.assertEquals("one",RadioResult.getText());
+        Assert.assertEquals("one", RadioResult.getText());
         WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
-        Assert.assertEquals("Great! Return to menu",returnFirstClicMe.getText());
+        Assert.assertEquals("Great! Return to menu", returnFirstClicMe.getText());
         returnFirstClicMe.click();
     }
+
+    @Test
+    public void ThirdTask() {
+        WebElement ThirdTask = webDriver.findElement(By.id("select"));
+        ThirdTask.click();
+        WebElement hero = webDriver.findElement(By.name("hero"));
+        Select heroSelect = new Select(hero);
+        heroSelect.selectByVisibleText("John von Neumann");
+        WebElement languages = webDriver.findElement(By.name("languages"));
+        Select languagesSelect = new Select(languages);
+        if (languagesSelect.isMultiple()) {
+            languagesSelect.selectByVisibleText("Java");
+            languagesSelect.selectByVisibleText("Python");
+            languagesSelect.selectByVisibleText("C++");
+        } else languagesSelect.selectByVisibleText("Java");
+        WebElement buttonSelectResult = webDriver.findElement(By.id("go"));
+        buttonSelectResult.click();
+        //WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
+        WebElement result = webDriver.findElement(By.name("result"));
+        if (languagesSelect.isMultiple()) {
+            Assert.assertEquals("Java, Python, C++", result.getText());
+        } else
+            Assert.assertEquals("Java", result.getText());
+    }
+
+    @Test
+    public void Fourthtask() {
+        WebElement formclick = webDriver.findElement(By.id("form"));
+        formclick.click();
+        inputdata("First Name:","Ivan");
+        inputdata("Last Name:","Ivanov");
+        inputdata("Email:","123@gmail.com");
+        inputdata("Address:","Samara");
+        inputdata("Avatar:", "javaphoto.jpg");
+        WebElement inputtext = webDriver.findElement(By.xpath(".//label[text()='Tell me something about yourself']//following::textarea"));
+        inputtext.sendKeys("very good");
+
+
+        //inputdatasex("Sex:","Male");
+
+
+    }
+
+    private void inputdata(String labeltext, String value){
+        WebElement input = webDriver.findElement(By.xpath(".//label[text()='"+labeltext+"']//following::input"));
+        input.sendKeys(value);
+    }
+    private  void inputdatasex(String labeltext,String value){
+        WebElement input = webDriver.findElement(By.xpath(".//label[text()='"+ labeltext +"']//following::input"));
+
+
+    }
+
+
+
+
+
     @After
-    public void teardown () throws InterruptedException {
+    public void teardown() throws InterruptedException {
         Thread.sleep(5000);
-        if (webDriver !=null){
+        if (webDriver != null) {
             webDriver.quit();
         }
     }
