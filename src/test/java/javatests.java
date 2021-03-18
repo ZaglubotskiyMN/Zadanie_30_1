@@ -101,24 +101,17 @@ public class javatests {
         inputtext.sendKeys("very good");
         WebElement submit = webDriver.findElement(By.xpath("//*[contains(@type,'submit')]"));
         submit.submit();
+        WebElement sexmale = webDriver.findElement(By.xpath("//input[@type='radio']"));
+        sexmale.click();
+        WebElement sexfemale= webDriver.findElement(By.xpath("//input[@type='radio'][last()]"));
+        sexfemale.click();
         WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
         returnFirstClicMe.click();
-        //inputdatasex("Sex:","Male");---- уточнить
-
     }
-
     private void inputdata(String labeltext, String value){
         WebElement input = webDriver.findElement(By.xpath(".//label[text()='"+labeltext+"']//following::input"));
         input.sendKeys(value);
     }
-    /*private  void inputdatasex(String labeltext,String value){
-        WebElement input = webDriver.findElement(By.xpath(".//label[text()='"+ labeltext +"']//following::input"));
-    }*/
-
-
-
-
-
     @After
     public void teardown() throws InterruptedException {
         Thread.sleep(3000);
@@ -126,6 +119,4 @@ public class javatests {
             webDriver.quit();
         }
     }
-
-
 }
