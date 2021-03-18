@@ -80,8 +80,8 @@ public class javatests {
         WebElement buttonSelectResult = webDriver.findElement(By.id("go"));
         buttonSelectResult.click();
         //WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
-       // WebElement result = webDriver.findElement(By.name("result"));
-        WebElement result = webDriver.findElement(By.xpath();
+        //WebElement result = webDriver.findElement(By.name("result"));
+        WebElement result = webDriver.findElement(By.xpath("//label[@name = 'result'][last()]"));
         if (languagesSelect.isMultiple()) {
             Assert.assertEquals("Java, Python, C++", result.getText());
         } else
@@ -114,11 +114,10 @@ public class javatests {
         WebElement input = webDriver.findElement(By.xpath(".//label[text()='"+labeltext+"']//following::input"));
         input.sendKeys(value);
     }
-    private  void inputdatasex(String labeltext,String value){
+
+    /*private  void inputdatasex(String labeltext,String value){
         WebElement input = webDriver.findElement(By.xpath(".//label[text()='"+ labeltext +"']//following::input"));
-
-
-    }
+    }*/
 
 
 
