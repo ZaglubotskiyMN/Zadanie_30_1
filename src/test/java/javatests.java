@@ -79,13 +79,13 @@ public class javatests {
         } else languagesSelect.selectByVisibleText("Java");
         WebElement buttonSelectResult = webDriver.findElement(By.id("go"));
         buttonSelectResult.click();
-        //WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
-        //WebElement result = webDriver.findElement(By.name("result"));
         WebElement result = webDriver.findElement(By.xpath("//label[@name = 'result'][last()]"));
         if (languagesSelect.isMultiple()) {
             Assert.assertEquals("Java, Python, C++", result.getText());
         } else
             Assert.assertEquals("Java", result.getText());
+        WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
+        returnFirstClicMe.click();
     }
 
     @Test
@@ -103,10 +103,7 @@ public class javatests {
         submit.submit();
         WebElement returnFirstClicMe = webDriver.findElement(By.linkText("Great! Return to menu"));
         returnFirstClicMe.click();
-
-
         //inputdatasex("Sex:","Male");---- уточнить
-
 
     }
 
@@ -114,7 +111,6 @@ public class javatests {
         WebElement input = webDriver.findElement(By.xpath(".//label[text()='"+labeltext+"']//following::input"));
         input.sendKeys(value);
     }
-
     /*private  void inputdatasex(String labeltext,String value){
         WebElement input = webDriver.findElement(By.xpath(".//label[text()='"+ labeltext +"']//following::input"));
     }*/
@@ -125,7 +121,7 @@ public class javatests {
 
     @After
     public void teardown() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         if (webDriver != null) {
             webDriver.quit();
         }
